@@ -1,0 +1,264 @@
+* {
+    font-family: 'Poppins', sans-serif;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+/* Navbar */
+.navbar-brand {
+    font-size: 36px;
+    font-weight: 500;
+}
+
+.logo {
+    color: #1D45F2;
+    font-weight: 700;
+}
+
+.logo2,
+.nav-item.active a {
+    color: #020C40 !important;
+}
+
+/* Jumbotron */
+.jumbotron {
+    background-color: white;
+}
+
+.jumbotron h2 {
+    font-weight: bold;
+    color: #020C40;
+    line-height: 50px;
+}
+
+.jumbotron p {
+    color: #B0B0B0;
+    font-weight: 500;
+    font-size: medium;
+}
+
+.jumbotron .btn {
+    text-decoration: none;
+    font-size: 17px;
+    padding: 10px 40px;
+    font-weight: 500;
+    color: white;
+    border-radius: 6px;
+    background-color: #284ADE;
+    box-shadow: 2px 1px 2px rgba(40, 72, 222, 0.8);
+}
+
+.jumbotron img {
+    width: 450px;
+    height: 300px;
+}
+
+/* Footer */
+footer p {
+    color: #B0B0B0;
+}
+
+/* form sign in pembudidaya*/
+.card {
+    border: 0pt;
+    border-radius: 10px;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, .3);
+}
+
+.card h5 {
+    color: #020C40;
+}
+
+input[type=email],
+input[type=password],
+input[type=text] {
+    border: 0;
+    outline: 0;
+    background: transparent;
+    border-bottom: 1px solid #B0B0B0;
+    -webkit-transition: width .35s ease-in-out;
+    transition: width .35s ease-in-out;
+    border-radius: 0px;
+    width: 50%;
+}
+
+/* Reset form from bootstrap */
+textarea:focus,
+textarea.form-control:focus,
+input.form-control:focus,
+input[type=text]:focus,
+input[type=password]:focus,
+input[type=email]:focus,
+input[type=number]:focus,
+[type=text].form-control:focus,
+[type=password].form-control:focus,
+[type=email].form-control:focus,
+[type=tel].form-control:focus,
+[contenteditable].form-control:focus {
+    box-shadow: inset 0 0px 0 #ddd;
+    border-bottom: 1px solid #1D45F2;
+}
+
+.card .label-form {
+    font-weight: 500;
+    color: #020C40;
+}
+
+input::placeholder,
+.card p {
+    color: #B0B0B0 !important;
+    font-weight: 200;
+}
+
+.btn-signup {
+    background-color: #E5E5E5;
+    color: #ffffff;
+    font-weight: 400;
+}
+
+.btn-signup:hover {
+    color: #ffffff;
+}
+
+.btn-signin {
+    background-color: #284ADE;
+    color: #ffffff;
+    font-weight: 400;
+}
+
+.btn-signin:hover {
+    color: #ffffff;
+}
+
+.forget-password {
+    margin-top: 90px;
+    margin-bottom: 50px;
+}
+
+/* form sign up pembudidaya */
+.btn-form-signup {
+    background-color: #284ADE;
+    color: #ffffff;
+    font-weight: 400;
+}
+
+.btn-form-signup:hover {
+    color: #ffffff;
+}
+
+/* Diagnosa */
+.card label {
+    color: #B0B0B0;
+}
+
+.box {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 15px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.box input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    border-radius: 5px;
+}
+
+.box:hover input~.checkmark {
+    background-color: #ccc;
+}
+
+.box input:checked~.checkmark {
+    background-color: #284ADE;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.box input:checked~.checkmark:after {
+    display: block;
+}
+
+.box .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.judul-diagnosa {
+    font-size: 15px;
+    color: #B0B0B0;
+}
+
+/* Hasil diagnosa */
+.list-gejala {
+    color: #B0B0B0;
+}
+
+/* Penyakit */
+.desc-penyakit {
+    color: #B0B0B0;
+}
+
+.title-penyakit {
+    color: #020C40;
+}
+
+thead,
+tbody {
+    color: #B0B0B0;
+}
+
+/* Select HTML */
+select {
+    font-size: 10px;
+    font-weight: bold;
+    border: 1px solid #E5E5E5;
+    border-radius: 4px;
+    color: #B0B0B0;
+    /* padding: 6px; */
+    padding-left: 2px;
+    padding-right: 2px;
+    height: 25px;
+    -webkit-appearance: none;
+
+    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' fill='#ecf0f1' width='50px' height='50px'><polyline points='46.139,15.518 25.166,36.49 4.193,15.519'/></svg>") right no-repeat;
+
+    background-color: #E5E5E5;
+    background-transparency: 0.5;
+    background-position: right 15px top 10px;
+    background-size: 18px 18px;
+}
+
+select:active {
+    border: 1px solid #000;
+}
