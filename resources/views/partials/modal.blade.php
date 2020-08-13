@@ -47,54 +47,116 @@
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-6 ml-auto">
-                            <div class="form-group">
-                                <label>Kode Penyakit</label>
-                                <input name="kode" type="text" class="form-control" placeholder="Kode Penyakit">
+                    <form action="" method="post">
+                        <div class="row">
+                            <div class="col-md-6 ml-auto">
+                                <div class="form-group">
+                                    <label>Kode Penyakit</label>
+                                    <input name="kode" type="text" class="form-control" placeholder="Kode Penyakit">
+                                </div>
+                                <div class="form-group">
+                                    <label>Nama Penyakit :</label>
+                                    <input type="text" name="nama" class="form-control" required="required"
+                                        placeholder="Nama dari penyakit...">
+                                </div>
+                                <div class="form-group">
+                                    <label>Penyebab :</label>
+                                    <input type="text" name="penyebab" class="form-control" required="required"
+                                        placeholder="Penyakit disebabkan oleh...">
+                                </div>
+                                <div class="form-group">
+                                    <label>Definisi Penyakit :</label>
+                                    <textarea name="definisi" class="form-control" rows="5" required="required"
+                                        placeholder="Jelaskan mengenai penyakit ini..."></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label>Pengobatan Penyakit :</label>
+                                    <textarea name="definisi" class="form-control" rows="5" required="required"
+                                        placeholder="Pengobatan Penyakit..."></textarea>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label>Nama Penyakit :</label>
-                                <input type="text" name="nama" class="form-control" required="required"
-                                    placeholder="Nama dari penyakit...">
-                            </div>
-                            <div class="form-group">
-                                <label>Penyebab :</label>
-                                <input type="text" name="penyebab" class="form-control" required="required"
-                                    placeholder="Penyakit disebabkan oleh...">
-                            </div>
-                            <div class="form-group">
-                                <label>Definisi Penyakit :</label>
-                                <textarea name="definisi" class="form-control" rows="5" required="required"
-                                    placeholder="Jelaskan mengenai penyakit ini..."></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label>Pengobatan Penyakit :</label>
-                                <textarea name="definisi" class="form-control" rows="5" required="required"
-                                    placeholder="Pengobatan Penyakit..."></textarea>
-                            </div>
-                        </div>
-                        <div class="col-md-6 ml-auto">
-                            <div class="form-group">
-                                <label>Gejala-gejala yang terjadi:</label>
-                                <div class="col-md-12">
-                                    <label class="box">One
-                                        <input type="checkbox">
-                                        <span class="checkmark"></span>
-                                        <span>
-                                            <select>
-                                                <option>Select an option</option>
-                                                <option>Hello</option>
-                                                <option>World</option>
-                                                <option>Sköll</option>
-                                                <option>Julien</option>
-                                            </select>
-                                        </span>
-                                    </label>
+                            <div class="col-md-6 ml-auto">
+                                <div class="form-group">
+                                    <label>Gejala-gejala yang terjadi:</label>
+                                    <div class="col-md-12">
+                                        <table>
+                                            <tr>
+                                                <td>
+                                                    <label class="box">Melompat
+                                                        <input type="checkbox">
+                                                        <span class="checkmark"></span>
+                                                    </label>
+                                                </td>
+                                                <td>
+                                                    <select id="blue">
+                                                        <option selected="selected">0,2</option>
+                                                        <option>0,4</option>
+                                                        <option>0,6</option>
+                                                        <option>0,8</option>
+                                                        <option>1</option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <label class="box">Berenang dengan cepat
+                                                        <input type="checkbox">
+                                                        <span class="checkmark"></span>
+                                                    </label>
+                                                </td>
+                                                <td>
+                                                    <select id="blue">
+                                                        <option selected="selected">0,2</option>
+                                                        <option>0,4</option>
+                                                        <option>0,6</option>
+                                                        <option>0,8</option>
+                                                        <option>1</option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <label class="box">Mengesekkan badan ke dinding dan dasar kolam
+                                                        <input type="checkbox">
+                                                        <span class="checkmark"></span>
+                                                    </label>
+                                                </td>
+                                                <td>
+                                                    <select id="blue">
+                                                        <option selected="selected">0,2</option>
+                                                        <option>0,4</option>
+                                                        <option>0,6</option>
+                                                        <option>0,8</option>
+                                                        <option>1</option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <label class="box">Mengesekkan badan ke dinding dan dasar kolam
+                                                        <input type="checkbox">
+                                                        <span class="checkmark"></span>
+                                                    </label>
+                                                </td>
+                                                <td>
+                                                    <select id="blue">
+                                                        <option selected="selected">0,2</option>
+                                                        <option>0,4</option>
+                                                        <option>0,6</option>
+                                                        <option>0,8</option>
+                                                        <option>1</option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                        <button type="submit" class="btn btn-success btn-sm float-sm-right"><i class="fa fa-plus"></i>
+                            Tambahkan
+                            Penyakit</button>
+                    </form>
                 </div>
             </div>
         </div>
