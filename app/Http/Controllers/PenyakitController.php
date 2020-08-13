@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Gejala;
+use App\Bobot;
+use App\Penyakit;
 
 class PenyakitController extends Controller
 {
@@ -13,7 +16,10 @@ class PenyakitController extends Controller
      */
     public function index()
     {
-        return view('pembudidaya.penyakit');
+        $penyakit = Penyakit::all();
+        $bobots = Bobot::all();
+        $gejalas = Gejala::all();
+        return view('pembudidaya.penyakit', compact('gejalas', 'bobots', 'penyakit'));
     }
 
     /**
@@ -34,7 +40,17 @@ class PenyakitController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $penyakit = new Penyakit;
+        $penyakit->kode = $request->kode;
+        $penyakit->nama = $request->nama;
+        $penyakit->penyebab = $request->penyebab;
+        $penyakit->definisi = $request->definisi;
+        $penyakit->save();
+        $penyakit->pengobatan = $request->pengobatan;
+        foreach ($request->gejala as $gejala_id) {
+            $penyakit->attachGejala($gejala_id);
+        }
+        return back();
     }
 
     /**
@@ -43,9 +59,9 @@ class PenyakitController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Penyakit $penyakit)
     {
-        //
+        return view('pembudidaya.penyakitread', compact('penyakit'));
     }
 
     /**

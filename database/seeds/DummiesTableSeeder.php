@@ -78,5 +78,50 @@ class DummiesTableSeeder extends Seeder
 
         DB::table('gejala')->insert($gejala);
 
+        $bobot = [
+            ['id' => 1, 'bobot' => 0.2],
+            ['id' => 2, 'bobot' => 0.4],
+            ['id' => 3, 'bobot' => 0.6],
+            ['id' => 4, 'bobot' => 0.8],
+            ['id' => 5, 'bobot' => 1],
+        ];
+
+        DB::table('bobot')->insert($bobot);
+
+        $penyakit = [
+            ['id' =>1, 'kode' => 'P001', 'nama' => 'Kutu Ikan', 'penyebab' => 'Parasit'],
+            ['id' =>2, 'kode' => 'P002', 'nama' => 'Cacing Jangkar', 'penyebab' => 'Parasit'],
+            ['id' =>3, 'kode' => 'P003', 'nama' => 'Trichodina', 'penyebab' => 'Parasit'],
+            ['id' =>4, 'kode' => 'P004', 'nama' => 'Chilodonella', 'penyebab' => 'Parasit'],
+            ['id' =>5, 'kode' => 'P005', 'nama' => 'Ichthyobodo', 'penyebab' => 'Parasit'],
+            ['id' =>6, 'kode' => 'P006', 'nama' => 'Dactylogyrus', 'penyebab' => 'Parasit'],
+            ['id' =>7, 'kode' => 'P007', 'nama' => 'Columnaris', 'penyebab' => 'Bakteri'],
+            ['id' =>8, 'kode' => 'P008', 'nama' => 'Infeksi aeromonas hydrophilia', 'penyebab' => 'Bakteri'],
+            ['id' =>9, 'kode' => 'P009', 'nama' => 'Dropsy', 'penyebab' => 'Virus'],
+            ['id' =>10, 'kode' => 'P010', 'nama' => 'KHV (Koi Herpes Virus)', 'penyebab' => 'Virus'],
+        ];
+
+        DB::table('penyakit')->insert($penyakit);
+
+        $aturan = [
+            1 => [4, 5, 12],
+            2 => [2, 4, 5, 12, 13, 17],
+            3 => [3, 5, 12, 19],
+            4 => [3, 5, 11, 12, 19],
+            5 => [5, 11, 12, 19],
+            6 => [1, 3, 5, 10, 11, 12, 15],
+            7 => [2, 5, 8, 11, 13, 14, 20, 22, 23],
+            8 => [11, 12, 13, 15, 17, 22],
+            9 => [4, 5, 6, 7, 9, 11, 13, 15, 20, 21, 22, 23],
+            10 => [4, 10, 12, 13, 14, 15, 16, 17, 18]
+        ];
+
+        foreach ($aturan as $penyakit_id => $gejala) {
+            $penyakit = App\Penyakit::find($penyakit_id);
+            foreach ($gejala as $gejala_id) {
+                $penyakit->attachGejala($gejala_id);
+        }
+        }
     }
+    
 }

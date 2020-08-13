@@ -24,23 +24,29 @@
                                 <th>#</th>
                                 <th>Nama Penyakit</th>
                                 <th>Gejala yang Nampak</th>
+                                <th>Penyebab</th>
                                 <th>Opsi</th>
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($penyakit as $no => $penyakit)
                             <tr>
-                                <td>1</td>
-                                <td>Kutu Ikan</td>
+                                <td>{{++$no}}</td>
+                                <td>{{$penyakit->nama}}</td>
                                 <td>
                                     <dl>
-                                        <dd>- Megap-megap dipermukaan air</dd>
-                                        <dd>- Menyendiri</dd>
-                                        <dd>- Radang dan iritasi pada kulit</dd>
+                                        @forelse ($penyakit->gejala as $gejala)
+                                        <dd>- {{$gejala->nama}}</dd>
+                                        @empty
+                                        Maaf, belum ada data gejala untuk penyakit ini.
+                                        @endforelse
                                     </dl>
                                 </td>
+                                <td>{{$penyakit->penyebab}}</td>
                                 <td>
-                                    <button type="submit" class="btn btn-signin btn-sm" data-toggle="modal"
-                                        data-target="#readPenyakit">
+                                    <button type="submit" class="btn btn-signin btn-sm"
+                                        onclick="readPenyakit('{{ route('penyakit.show', $penyakit->id) }}')"
+                                        data-toggle="modal" data-target="#readPenyakit">
                                         <i class="fa fa-eye" aria-hidden="true"></i>
                                     </button>
                                     @if (auth()->user()->role == 'admin')
@@ -59,6 +65,7 @@
                                     @endif
                                 </td>
                             </tr>
+                            @endforeach
                         </tbody>
 
                     </table>
@@ -70,6 +77,96 @@
 
 </div>
 @section('modal')
-@include('partials.modal')
+{{-- lihat penyakit --}}
+<div class="modal fade" id="readPenyakit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+        </div>
+    </div>
+</div>
+
+{{-- tambah penyakit --}}
+@if (auth()->user()->role == 'admin')
+<div class="modal fade" id="tambahPenyakit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title title-penyakit">Tambah Penyakit Baru</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <form action="{{route('penyakit.store')}}" method="post">
+                        {{ csrf_field() }}
+                        <div class="row">
+                            <div class="col-md-6 ml-auto">
+                                <div class="form-group">
+                                    <label>Kode Penyakit</label>
+                                    <input name="kode" type="text" class="form-control" placeholder="Kode Penyakit">
+                                </div>
+                                <div class="form-group">
+                                    <label>Nama Penyakit :</label>
+                                    <input type="text" name="nama" class="form-control" required="required"
+                                        placeholder="Nama dari penyakit...">
+                                </div>
+                                <div class="form-group">
+                                    <label>Penyebab :</label>
+                                    <input type="text" name="penyebab" class="form-control" required="required"
+                                        placeholder="Penyakit disebabkan oleh...">
+                                </div>
+                                <div class="form-group">
+                                    <label>Definisi Penyakit :</label>
+                                    <textarea name="definisi" class="form-control" rows="5" required="required"
+                                        placeholder="Jelaskan mengenai penyakit ini..."></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label>Pengobatan Penyakit :</label>
+                                    <textarea name="pengobatan" class="form-control" rows="5" required="required"
+                                        placeholder="Pengobatan Penyakit..."></textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-6 ml-auto">
+                                <div class="form-group">
+                                    <label>Gejala-gejala yang terjadi:</label>
+                                    <div class="col-md-12">
+                                        <table>
+                                            @foreach ($gejalas as $gejala)
+                                            <tr>
+                                                <td>
+                                                    <label class="box">
+                                                        <input type="checkbox" name="gejala[]"
+                                                            value="{{$gejala->id}}">{{$gejala->nama}}
+                                                        <span class="checkmark"></span>
+                                                    </label>
+                                                </td>
+                                                {{-- <td>
+                                                    <select id="blue">
+                                                        @foreach ($bobots as $bobot)
+                                                        <option>{{$bobot->bobot}}</option>
+                                                @endforeach
+                                                </select>
+                                                </td> --}}
+                                            </tr>
+                                            @endforeach
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-success btn-sm float-sm-right"><i class="fa fa-plus"></i>
+                            Tambahkan
+                            Penyakit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endif
 @endsection
 @endsection

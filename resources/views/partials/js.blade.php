@@ -15,7 +15,13 @@
         $('#example').DataTable();
     });
 
-    function edit(route) {
+    function readPenyakit(route) {
+        $.get(route, function (data) {
+            $('#readPenyakit .modal-content').html(data);
+        });
+    }
+
+    function updateGejala(route) {
         $.get(route, function (data) {
             $('#updateGejala .modal-body').html(data);
         });
