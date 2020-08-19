@@ -16,12 +16,12 @@ class PembudidayaController extends Controller
     }
     public function signin()
     {
-        return view('pembudidaya.signin');
+        return view('pembudidaya.signin.signin');
     }
 
     public function signup()
     {
-        return view('pembudidaya.signup');
+        return view('pembudidaya.signin.signup');
     }
 
     public function postsignup(Request $request)

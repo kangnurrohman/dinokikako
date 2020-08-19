@@ -20,7 +20,7 @@ class PenyakitController extends Controller
         $penyakit = Penyakit::all();
         $bobots = Bobot::all();
         $gejalas = Gejala::all();
-        return view('pembudidaya.penyakit', compact('gejalas', 'bobots', 'penyakit'));
+        return view('pembudidaya.penyakit.penyakit', compact('gejalas', 'bobots', 'penyakit'));
     }
 
     /**
@@ -74,7 +74,7 @@ class PenyakitController extends Controller
      */
     public function show(Penyakit $penyakit)
     {
-        return view('pembudidaya.penyakitread', compact('penyakit'));
+        return view('pembudidaya.penyakit.penyakitread', compact('penyakit'));
     }
 
     /**

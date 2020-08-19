@@ -8,6 +8,6 @@ class RiwayatController extends Controller
 {
     public function index()
     {
-        return view('admin.riwayat');
+        return view('admin.riwayat.riwayat');
     }
 }

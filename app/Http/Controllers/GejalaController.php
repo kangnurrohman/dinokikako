@@ -15,7 +15,7 @@ class GejalaController extends Controller
     public function index()
     {
         $gejala = Gejala::all();
-        return view('admin.gejala', compact('gejala'));
+        return view('admin.gejala.gejala', compact('gejala'));
     }
 
     /**
@@ -60,7 +60,7 @@ class GejalaController extends Controller
     public function edit($id)
     {
         $gejala = Gejala::find($id);
-        return view('admin.gejalaedit', compact('gejala'));
+        return view('admin.gejala.gejalaedit', compact('gejala'));
     }
 
     /**

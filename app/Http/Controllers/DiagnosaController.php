@@ -8,6 +8,6 @@ class DiagnosaController extends Controller
 {
     public function index()
     {
-        return view('pembudidaya.diagnosa');
+        return view('pembudidaya.diagnosa.diagnosa');
     }
 }

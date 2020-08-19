@@ -9,6 +9,6 @@ class DataPembudidayaController extends Controller
 {
     public function index(){
         $pembudidaya =  Pembudidaya::all();
-        return view('admin.pembudidaya', compact('pembudidaya'));
+        return view('admin.pembudidaya.pembudidaya', compact('pembudidaya'));
     }
 }

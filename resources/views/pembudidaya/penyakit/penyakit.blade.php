@@ -122,7 +122,8 @@
                             <div class="col-md-6 ml-auto">
                                 <div class="form-group">
                                     <label>Kode Penyakit</label>
-                                    <input name="kode" type="text" class="form-control" placeholder="Kode Penyakit">
+                                    <input name="kode" type="text" class="form-control" placeholder="Kode Penyakit"
+                                        required="required">
                                 </div>
                                 <div class="form-group">
                                     <label>Nama Penyakit :</label>
