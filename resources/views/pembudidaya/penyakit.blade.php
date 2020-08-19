@@ -35,8 +35,19 @@
                                 <td>{{$penyakit->nama}}</td>
                                 <td>
                                     <dl>
-                                        @forelse ($penyakit->gejala as $gejala)
-                                        <dd>- {{$gejala->nama}}</dd>
+                                        @php
+                                        $i = 0;
+                                        @endphp
+                                        @forelse ($penyakit->gejala as $key => $gejala )
+                                        <dd>
+                                            - {{$gejala->nama}}
+                                            @if ($key == $i)
+                                            ({{$penyakit->bobot[$i]->bobot}})
+                                            @php
+                                            $i++;
+                                            @endphp
+                                            @endif
+                                        </dd>
                                         @empty
                                         Maaf, belum ada data gejala untuk penyakit ini.
                                         @endforelse
@@ -44,25 +55,28 @@
                                 </td>
                                 <td>{{$penyakit->penyebab}}</td>
                                 <td>
-                                    <button type="submit" class="btn btn-signin btn-sm"
-                                        onclick="readPenyakit('{{ route('penyakit.show', $penyakit->id) }}')"
-                                        data-toggle="modal" data-target="#readPenyakit">
-                                        <i class="fa fa-eye" aria-hidden="true"></i>
-                                    </button>
-                                    @if (auth()->user()->role == 'admin')
-                                    <button type="submit" class="btn btn-success btn-sm" data-toggle="modal"
-                                        data-target="#tambahPenyakit">
-                                        <i class="fa fa-plus" aria-hidden="true"></i>
-                                    </button>
-                                    <button type="submit" class="btn btn-warning btn-sm" data-toggle="modal"
-                                        data-target="#exampleModal">
-                                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                    </button>
-                                    <button type="submit" class="btn btn-danger btn-sm" data-toggle="modal"
-                                        data-target="#exampleModal">
-                                        <i class="fa fa-trash" aria-hidden="true"></i>
-                                    </button>
-                                    @endif
+                                    <form method="post" action="{{ route('penyakit.destroy', $penyakit->id) }}">
+                                        {{ method_field('delete') }}
+                                        {{ csrf_field() }}
+                                        <button type="button" class="btn btn-signin btn-sm"
+                                            onclick="readPenyakit('{{ route('penyakit.show', $penyakit->id) }}')"
+                                            data-toggle="modal" data-target="#readPenyakit">
+                                            <i class="fa fa-eye" aria-hidden="true"></i>
+                                        </button>
+                                        @if (auth()->user()->role == 'admin')
+                                        <button type="button" class="btn btn-success btn-sm" data-toggle="modal"
+                                            data-target="#tambahPenyakit">
+                                            <i class="fa fa-plus" aria-hidden="true"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-warning btn-sm" data-toggle="modal"
+                                            data-target="#exampleModal">
+                                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                        </button>
+                                        <button type="submit" class="btn btn-danger btn-sm"
+                                            onclick="return confirm(`Yakin mau menghapus ?`)"><i
+                                                class="fa fa-trash"></i></button>
+                                        @endif
+                                    </form>
                                 </td>
                             </tr>
                             @endforeach
@@ -103,6 +117,7 @@
                 <div class="container-fluid">
                     <form action="{{route('penyakit.store')}}" method="post">
                         {{ csrf_field() }}
+                        <input type="hidden" name="nama" value="{{ request('nama') }}">
                         <div class="row">
                             <div class="col-md-6 ml-auto">
                                 <div class="form-group">
@@ -144,13 +159,14 @@
                                                         <span class="checkmark"></span>
                                                     </label>
                                                 </td>
-                                                {{-- <td>
-                                                    <select id="blue">
+                                                <td>
+                                                    <select id="blue" name="bobot[]">
+                                                        <option selected value="">--pilih--</option>
                                                         @foreach ($bobots as $bobot)
-                                                        <option>{{$bobot->bobot}}</option>
-                                                @endforeach
-                                                </select>
-                                                </td> --}}
+                                                        <option value="{{$bobot->id}}">{{$bobot->bobot}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </td>
                                             </tr>
                                             @endforeach
                                         </table>

@@ -104,24 +104,75 @@ class DummiesTableSeeder extends Seeder
         DB::table('penyakit')->insert($penyakit);
 
         $aturan = [
-            1 => [4, 5, 12],
-            2 => [2, 4, 5, 12, 13, 17],
-            3 => [3, 5, 12, 19],
-            4 => [3, 5, 11, 12, 19],
-            5 => [5, 11, 12, 19],
-            6 => [1, 3, 5, 10, 11, 12, 15],
-            7 => [2, 5, 8, 11, 13, 14, 20, 22, 23],
-            8 => [11, 12, 13, 15, 17, 22],
-            9 => [4, 5, 6, 7, 9, 11, 13, 15, 20, 21, 22, 23],
-            10 => [4, 10, 12, 13, 14, 15, 16, 17, 18]
+            ['id' => 1, 'penyakit_id' => 1, 'gejala_id' => 4, 'bobot_id' => 2],
+            ['id' => 2, 'penyakit_id' => 1, 'gejala_id' => 5, 'bobot_id' => 3],
+            ['id' => 3, 'penyakit_id' => 1, 'gejala_id' => 12, 'bobot_id' => 2],
+            ['id' => 4, 'penyakit_id' => 2, 'gejala_id' => 2, 'bobot_id' => 2],
+            ['id' => 5, 'penyakit_id' => 2, 'gejala_id' => 4, 'bobot_id' => 3],
+            ['id' => 6, 'penyakit_id' => 2, 'gejala_id' => 5, 'bobot_id' => 1],
+            ['id' => 7, 'penyakit_id' => 2, 'gejala_id' => 12, 'bobot_id' => 1],
+            ['id' => 8, 'penyakit_id' => 2, 'gejala_id' => 13, 'bobot_id' => 2],
+            ['id' => 9, 'penyakit_id' => 2, 'gejala_id' => 17, 'bobot_id' => 2],
+            ['id' => 10, 'penyakit_id' => 3, 'gejala_id' => 3, 'bobot_id' => 1],
+            ['id' => 11, 'penyakit_id' => 3, 'gejala_id' => 5, 'bobot_id' => 2],
+            ['id' => 12, 'penyakit_id' => 3, 'gejala_id' => 12, 'bobot_id' => 3],
+            ['id' => 13, 'penyakit_id' => 3, 'gejala_id' => 19, 'bobot_id' => 3],
+            ['id' => 14, 'penyakit_id' => 4, 'gejala_id' => 3, 'bobot_id' => 2],
+            ['id' => 15, 'penyakit_id' => 4, 'gejala_id' => 5, 'bobot_id' => 1],
+            ['id' => 16, 'penyakit_id' => 4, 'gejala_id' => 11, 'bobot_id' => 3],
+            ['id' => 17, 'penyakit_id' => 4, 'gejala_id' => 12, 'bobot_id' => 2],
+            ['id' => 18, 'penyakit_id' => 4, 'gejala_id' => 19, 'bobot_id' => 2],
+            ['id' => 19, 'penyakit_id' => 5, 'gejala_id' => 5, 'bobot_id' => 3],
+            ['id' => 20, 'penyakit_id' => 5, 'gejala_id' => 11, 'bobot_id' => 1],
+            ['id' => 21, 'penyakit_id' => 5, 'gejala_id' => 12, 'bobot_id' => 1],
+            ['id' => 22, 'penyakit_id' => 5, 'gejala_id' => 19, 'bobot_id' => 1],
+            ['id' => 23, 'penyakit_id' => 6, 'gejala_id' => 1, 'bobot_id' => 1],
+            ['id' => 24, 'penyakit_id' => 6, 'gejala_id' => 3, 'bobot_id' => 3],
+            ['id' => 25, 'penyakit_id' => 6, 'gejala_id' => 5, 'bobot_id' => 1],
+            ['id' => 26, 'penyakit_id' => 6, 'gejala_id' => 10, 'bobot_id' => 2],
+            ['id' => 27, 'penyakit_id' => 6, 'gejala_id' => 11, 'bobot_id' => 1],
+            ['id' => 30, 'penyakit_id' => 6, 'gejala_id' => 12, 'bobot_id' => 1],
+            ['id' => 31, 'penyakit_id' => 6, 'gejala_id' => 15, 'bobot_id' => 2],
+            ['id' => 32, 'penyakit_id' => 7, 'gejala_id' => 2, 'bobot_id' => 3],
+            ['id' => 33, 'penyakit_id' => 7, 'gejala_id' => 5, 'bobot_id' => 2],
+            ['id' => 34, 'penyakit_id' => 7, 'gejala_id' => 8, 'bobot_id' => 3],
+            ['id' => 35, 'penyakit_id' => 7, 'gejala_id' => 11, 'bobot_id' => 2],
+            ['id' => 36, 'penyakit_id' => 7, 'gejala_id' => 13, 'bobot_id' => 2],
+            ['id' => 37, 'penyakit_id' => 7, 'gejala_id' => 14, 'bobot_id' => 1],
+            ['id' => 38, 'penyakit_id' => 7, 'gejala_id' => 20, 'bobot_id' => 3],
+            ['id' => 39, 'penyakit_id' => 7, 'gejala_id' => 22, 'bobot_id' => 2],
+            ['id' => 40, 'penyakit_id' => 7, 'gejala_id' => 23, 'bobot_id' => 2],
+            ['id' => 41, 'penyakit_id' => 8, 'gejala_id' => 4, 'bobot_id' => 1],
+            ['id' => 42, 'penyakit_id' => 8, 'gejala_id' => 5, 'bobot_id' => 2],
+            ['id' => 43, 'penyakit_id' => 8, 'gejala_id' => 6, 'bobot_id' => 1],
+            ['id' => 44, 'penyakit_id' => 8, 'gejala_id' => 7, 'bobot_id' => 2],
+            ['id' => 45, 'penyakit_id' => 8, 'gejala_id' => 9, 'bobot_id' => 2],
+            ['id' => 46, 'penyakit_id' => 8, 'gejala_id' => 11, 'bobot_id' => 3],
+            ['id' => 47, 'penyakit_id' => 8, 'gejala_id' => 13, 'bobot_id' => 2],
+            ['id' => 48, 'penyakit_id' => 8, 'gejala_id' => 15, 'bobot_id' => 1],
+            ['id' => 49, 'penyakit_id' => 8, 'gejala_id' => 20, 'bobot_id' => 2],
+            ['id' => 50, 'penyakit_id' => 8, 'gejala_id' => 21, 'bobot_id' => 3],
+            ['id' => 51, 'penyakit_id' => 8, 'gejala_id' => 22, 'bobot_id' => 1],
+            ['id' => 52, 'penyakit_id' => 8, 'gejala_id' => 23, 'bobot_id' => 1],
+            ['id' => 53, 'penyakit_id' => 9, 'gejala_id' => 11, 'bobot_id' => 1],
+            ['id' => 54, 'penyakit_id' => 9, 'gejala_id' => 12, 'bobot_id' => 3],
+            ['id' => 55, 'penyakit_id' => 9, 'gejala_id' => 13, 'bobot_id' => 3],
+            ['id' => 56, 'penyakit_id' => 9, 'gejala_id' => 15, 'bobot_id' => 2],
+            ['id' => 57, 'penyakit_id' => 9, 'gejala_id' => 17, 'bobot_id' => 1],
+            ['id' => 58, 'penyakit_id' => 9, 'gejala_id' => 22, 'bobot_id' => 3],
+            ['id' => 59, 'penyakit_id' => 10, 'gejala_id' => 4, 'bobot_id' => 3],
+            ['id' => 60, 'penyakit_id' => 10, 'gejala_id' => 10, 'bobot_id' => 3],
+            ['id' => 61, 'penyakit_id' => 10, 'gejala_id' => 12, 'bobot_id' => 2],
+            ['id' => 62, 'penyakit_id' => 10, 'gejala_id' => 13, 'bobot_id' => 1],
+            ['id' => 63, 'penyakit_id' => 10, 'gejala_id' => 14, 'bobot_id' => 2],
+            ['id' => 64, 'penyakit_id' => 10, 'gejala_id' => 15, 'bobot_id' => 2],
+            ['id' => 65, 'penyakit_id' => 10, 'gejala_id' => 16, 'bobot_id' => 3],
+            ['id' => 66, 'penyakit_id' => 10, 'gejala_id' => 17, 'bobot_id' => 1],
+            ['id' => 67, 'penyakit_id' => 10, 'gejala_id' => 18, 'bobot_id' =>2],
         ];
 
-        foreach ($aturan as $penyakit_id => $gejala) {
-            $penyakit = App\Penyakit::find($penyakit_id);
-            foreach ($gejala as $gejala_id) {
-                $penyakit->attachGejala($gejala_id);
-        }
-        }
+        DB::table('aturan')->insert($aturan);
+
     }
     
 }
