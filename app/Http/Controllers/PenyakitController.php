@@ -83,9 +83,11 @@ class PenyakitController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Penyakit $penyakit)
     {
-        //
+        $gejalas = Gejala::all();
+        $bobots = Bobot::all();
+        return view('pembudidaya.penyakit.penyakitedit', compact('bobots', 'gejalas','penyakit'));
     }
 
     /**
@@ -97,7 +99,30 @@ class PenyakitController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $gejala = $request->input('gejala');
+        $penyakit_id = DB::table('penyakit')->where('id', $id)->update([
+            'kode' => $request->input('kode'),
+            'nama' => $request->input('nama'),
+            'penyebab' => $request->input('penyebab'),
+            'definisi' => $request->input('definisi'),
+            'pengobatan' => $request->input('pengobatan'),
+        ]);
+
+        DB::table('aturan')->where('penyakit_id', $id)->delete();
+
+        for ($i=0; $i < count($gejala); $i++) {
+            $nilai_asli_gejala = $gejala[$i];
+            $index_gejala = $gejala[$i] -= 1;
+            
+            $bobot = $request->input('bobot')[$index_gejala];
+            
+            DB::table('aturan')->insert([
+                    'gejala_id' => $nilai_asli_gejala,
+                    'penyakit_id' => $id,
+                    'bobot_id' => $bobot,
+            ]);
+        }
+        return back();
     }
 
     /**

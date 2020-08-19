@@ -21,6 +21,12 @@
         });
     }
 
+    function updatePenyakit(route) {
+        $.get(route, function (data) {
+            $('#updatePenyakit .modal-content').html(data);
+        });
+    }
+
     function updateGejala(route) {
         $.get(route, function (data) {
             $('#updateGejala .modal-body').html(data);

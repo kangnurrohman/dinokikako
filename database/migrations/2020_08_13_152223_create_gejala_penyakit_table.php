@@ -15,9 +15,9 @@ class CreateGejalaPenyakitTable extends Migration
     {
         Schema::create('aturan', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('penyakit_id')->nullable();
-            $table->unsignedInteger('gejala_id')->nullable();
-            $table->unsignedInteger('bobot_id')->nullable();
+            $table->unsignedInteger('penyakit_id');
+            $table->unsignedInteger('gejala_id');
+            $table->unsignedInteger('bobot_id');
         });
     }
 

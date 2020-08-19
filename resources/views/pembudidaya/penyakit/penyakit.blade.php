@@ -68,8 +68,9 @@
                                             data-target="#tambahPenyakit">
                                             <i class="fa fa-plus" aria-hidden="true"></i>
                                         </button>
-                                        <button type="button" class="btn btn-warning btn-sm" data-toggle="modal"
-                                            data-target="#exampleModal">
+                                        <button type="button" class="btn btn-warning btn-sm"
+                                            onclick="updatePenyakit('{{ route('penyakit.edit', $penyakit->id) }}')"
+                                            data-toggle="modal" data-target="#updatePenyakit">
                                             <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                         </button>
                                         <button type="submit" class="btn btn-danger btn-sm"
@@ -117,7 +118,6 @@
                 <div class="container-fluid">
                     <form action="{{route('penyakit.store')}}" method="post">
                         {{ csrf_field() }}
-                        <input type="hidden" name="nama" value="{{ request('nama') }}">
                         <div class="row">
                             <div class="col-md-6 ml-auto">
                                 <div class="form-group">
@@ -181,6 +181,18 @@
                     </form>
                 </div>
             </div>
+        </div>
+    </div>
+</div>
+@endif
+
+{{-- update penyakit --}}
+@if (auth()->user()->role == 'admin')
+<div class="modal fade" id="updatePenyakit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+
         </div>
     </div>
 </div>
