@@ -22,6 +22,7 @@
                         <thead>
                             <tr>
                                 <th>#</th>
+                                <th>Kode</th>
                                 <th>Nama Penyakit</th>
                                 <th>Gejala yang Nampak</th>
                                 <th>Penyebab</th>
@@ -32,6 +33,7 @@
                             @foreach ($penyakit as $no => $penyakit)
                             <tr>
                                 <td>{{++$no}}</td>
+                                <td>{{$penyakit->kode}}</td>
                                 <td>{{$penyakit->nama}}</td>
                                 <td>
                                     <dl>
@@ -55,29 +57,15 @@
                                 </td>
                                 <td>{{$penyakit->penyebab}}</td>
                                 <td>
-                                    <form method="post" action="{{ route('penyakit.destroy', $penyakit->id) }}">
-                                        {{ method_field('delete') }}
-                                        {{ csrf_field() }}
-                                        <button type="button" class="btn btn-signin btn-sm"
-                                            onclick="readPenyakit('{{ route('penyakit.show', $penyakit->id) }}')"
-                                            data-toggle="modal" data-target="#readPenyakit">
-                                            <i class="fa fa-eye" aria-hidden="true"></i>
-                                        </button>
-                                        @if (auth()->user()->role == 'admin')
-                                        <button type="button" class="btn btn-success btn-sm" data-toggle="modal"
-                                            data-target="#tambahPenyakit">
-                                            <i class="fa fa-plus" aria-hidden="true"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-warning btn-sm"
-                                            onclick="updatePenyakit('{{ route('penyakit.edit', $penyakit->id) }}')"
-                                            data-toggle="modal" data-target="#updatePenyakit">
+                                    <button type="button" class="btn btn-signin btn-sm" onclick="readPenyakit('{{ route('penyakit.show', $penyakit->id) }}')"data-toggle="modal" data-target="#readPenyakit">
+                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                                    </button>
+                                    @if (auth()->user()->role == 'admin')
+                                        <button type="button" class="btn btn-warning btn-sm" onclick="updatePenyakit('{{ route('penyakit.edit', $penyakit->id) }}')" data-toggle="modal" data-target="#updatePenyakit">
                                             <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                         </button>
-                                        <button type="submit" class="btn btn-danger btn-sm"
-                                            onclick="return confirm(`Yakin mau menghapus ?`)"><i
-                                                class="fa fa-trash"></i></button>
-                                        @endif
-                                    </form>
+                                        <a href="#" class="btn btn-danger btn-sm delete" penyakitid="{{$penyakit->id}}"><i class="fa fa-trash"></i></a>
+                                    @endif
                                 </td>
                             </tr>
                             @endforeach
@@ -123,7 +111,7 @@
                                 <div class="form-group">
                                     <label>Kode Penyakit</label>
                                     <input name="kode" type="text" class="form-control" placeholder="Kode Penyakit"
-                                        required="required">
+                                        readonly="readonly" value="P0{{ $penyakit->id + 1 }}">
                                 </div>
                                 <div class="form-group">
                                     <label>Nama Penyakit :</label>
@@ -198,4 +186,32 @@
 </div>
 @endif
 @endsection
+@endsection
+@section('buttonadd')
+    <script>
+    @if(auth()->user()->role == 'admin')
+        $(document).ready(function () {
+            $('.dataTables_filter input').after(
+                '<button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#tambahPenyakit" style="margin-left: 20px"><i class="fa fa-plus" aria-hidden="true"></i> Penyakit </button>'
+            );
+        });
+	@endif
+    </script>
+    <script>
+        $('.delete').click(function(){
+            var penyakit_id = $(this).attr('penyakitid');
+            swal({
+                title: "Apakah anda yakin ?",
+                text: "Mau menghapus penyakit ini !!!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                    window.location = "/penyakit/"+penyakit_id+"/delete";
+                } 
+            });
+        });    
+    </script>
 @endsection

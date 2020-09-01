@@ -3,7 +3,7 @@
     {{ method_field('PATCH') }}
     <div class=" form-group">
         <label>Kode Gejala</label>
-        <input name="kode" type="text" class="form-control" value="{{ $gejala->kode }}">
+        <input name="kode" type="text" class="form-control" value="{{ $gejala->kode }}" readonly>
     </div>
     <div class="form-group">
         <label>Gejala</label>

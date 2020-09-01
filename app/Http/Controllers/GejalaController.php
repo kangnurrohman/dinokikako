@@ -37,7 +37,7 @@ class GejalaController extends Controller
     public function store(Request $request)
     {
         Gejala::create($request->all());
-        return back();
+        return back()->with('sukses','Data berhasil dimasukkan');
     }
 
     /**
@@ -76,7 +76,7 @@ class GejalaController extends Controller
         $gejala->kode = $request->kode;
         $gejala->nama = $request->nama;
         $gejala->save();
-        return back();
+        return back()->with('sukses','Data berhasil diedit');
     }
 
     /**
@@ -89,6 +89,6 @@ class GejalaController extends Controller
     {
         $gejala = Gejala::find($id);
         $gejala->delete();
-        return back();
+        return back()->with('sukses','Data berhasil dihapus');
     }
 }

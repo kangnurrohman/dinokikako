@@ -25,7 +25,6 @@
                                 <th>Nama Pembudidaya</th>
                                 <th>Email</th>
                                 <th>Alamat</th>
-                                <th>Opsi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -35,12 +34,6 @@
                                 <td>{{$pembudidaya->nama}}</td>
                                 <td>{{$pembudidaya->email}}</td>
                                 <td>{{$pembudidaya->alamat}}</td>
-                                <td>
-                                    <button type="submit" class="btn btn-danger btn-sm" data-toggle="modal"
-                                        data-target="#exampleModal">
-                                        <i class="fa fa-trash" aria-hidden="true"></i>
-                                    </button>
-                                </td>
                             </tr>
                             @endforeach
                         </tbody>

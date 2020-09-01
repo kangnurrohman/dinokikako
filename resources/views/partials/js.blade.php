@@ -10,6 +10,7 @@
 </script>
 <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 <script>
     $(document).ready(function () {
         $('#example').DataTable();
@@ -32,5 +33,8 @@
             $('#updateGejala .modal-body').html(data);
         });
     }
-
+    @if(Session::has('sukses'))
+        toastr.success('{{Session::get('sukses')}}',"Sukses")
+	@endif
 </script>
+@yield('buttonadd')

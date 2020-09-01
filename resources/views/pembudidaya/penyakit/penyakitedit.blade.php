@@ -14,7 +14,7 @@
                     <div class="form-group">
                         <label>Kode Penyakit</label>
                         <input name="kode" type="text" class="form-control" placeholder="Kode Penyakit"
-                            required="required" value="{{$penyakit->kode}}">
+                            required="required" value="{{$penyakit->kode}}" readonly>
                     </div>
                     <div class="form-group">
                         <label>Nama Penyakit :</label>
@@ -64,7 +64,7 @@
                                 <script>
                                 @foreach($penyakit -> gejala as $gejala)
 							        $(".check[value={{ $gejala->id }}]").attr('checked', true);
-	                            @endforeach()
+                                @endforeach()
                                 </script>
                             </table>
                         </div>

@@ -34,22 +34,9 @@
                                 <td>{{$gejala->kode}}</td>
                                 <td>{{$gejala->nama}}</td>
                                 <td>
-                                    <form method="post" action="{{ route('gejala.destroy', $gejala->id) }}">
-                                        {{ method_field('delete') }}
-                                        {{ csrf_field() }}
-                                        <button type="button" class="btn btn-success btn-sm" data-toggle="modal"
-                                            data-target="#createGejala">
-                                            <i class="fa fa-plus" aria-hidden="true"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-warning btn-sm" data-toggle="modal"
-                                            onclick="updateGejala('{{route('gejala.edit', $gejala->id)}}')"
-                                            data-target="#updateGejala">
-                                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                        </button>
-                                        <button type="submit" class="btn btn-danger btn-sm"
-                                            onclick="return confirm(`Yakin mau menghapus ?`)"><i
-                                                class="fa fa-trash"></i></button>
-                                    </form>
+                                    <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" onclick="updateGejala('{{route('gejala.edit', $gejala->id)}}')" data-target="#updateGejala"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                    </button>
+                                    <a href="#" class="btn btn-danger btn-sm delete" gejalaid="{{$gejala->id}}"><i class="fa fa-trash"></i></a>
                                 </td>
                             </tr>
                             @endforeach
@@ -84,7 +71,7 @@
                     {{csrf_field()}}
                     <div class="form-group">
                         <label>Kode Gejala</label>
-                        <input name="kode" type="text" class="form-control">
+                        <input name="kode" type="text" class="form-control" readonly="readonly" value="G0{{ $gejala->id + 1 }}">
                     </div>
                     <div class="form-group">
                         <label>Gejala</label>
@@ -117,6 +104,33 @@
     </div>
 </div>
 @endif
-
 @endsection
+@endsection
+@section('buttonadd')
+    <script>
+    @if(auth()->user()->role == 'admin')
+        $(document).ready(function () {
+            $('.dataTables_filter input').after(
+                '<button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#createGejala" style="margin-left: 20px"><i class="fa fa-plus" aria-hidden="true"></i> Gejala </button>'
+            );
+        });
+	@endif
+    </script>
+    <script>
+        $('.delete').click(function(){
+            var gejala_id = $(this).attr('gejalaid');
+            swal({
+                title: "Apakah anda yakin ?",
+                text: "Mau menghapus gejala ini!!!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                    window.location = "/gejala/"+gejala_id+"/delete";
+                } 
+            });
+        });
+    </script>
 @endsection

@@ -17,53 +17,19 @@
         <div class="col-sm-12 col-lg-8 mb-3">
             <div class="card">
                 <div class="card-body">
-                    <h5>Gejala</h5>
-                    <label>Gejala-gejala yang nampak pada ikan koi anda:</label>
-                    <label class="box">One
-                        <input type="checkbox">
-                        <span class="checkmark"></span>
-                    </label>
-                    <label class="box">One
-                        <input type="checkbox">
-                        <span class="checkmark"></span>
-                    </label>
-                    <label class="box">One
-                        <input type="checkbox">
-                        <span class="checkmark"></span>
-                    </label>
-                    <label class="box">One
-                        <input type="checkbox">
-                        <span class="checkmark"></span>
-                    </label>
-                    <label class="box">One
-                        <input type="checkbox">
-                        <span class="checkmark"></span>
-                    </label>
-                    <label class="box">One
-                        <input type="checkbox">
-                        <span class="checkmark"></span>
-                    </label>
-                    <label class="box">One
-                        <input type="checkbox">
-                        <span class="checkmark"></span>
-                    </label>
-                    <label class="box">One
-                        <input type="checkbox">
-                        <span class="checkmark"></span>
-                    </label>
-                    <label class="box">One
-                        <input type="checkbox">
-                        <span class="checkmark"></span>
-                    </label>
-                    <label class="box">One
-                        <input type="checkbox">
-                        <span class="checkmark"></span>
-                    </label>
-                    <label class="box">One
-                        <input type="checkbox">
-                        <span class="checkmark"></span>
-                    </label>
-                    <button type="submit" class="btn btn-signin mb-4 float-sm-right mt-4">Check Hasil Diagnosa</button>
+                    <form action="{{route('storeDiagnosa')}}" method="post">
+                        {{ csrf_field() }}
+                        <h5>Gejala</h5>
+                        <label>Gejala-gejala yang nampak pada ikan koi anda:</label>
+                        @foreach ($gejalas as $gejala)
+                        <label class="box">
+                            <input type="checkbox" name="gejala[]" value="{{$gejala->id}}">{{$gejala->nama}}
+                            <span class="checkmark"></span>
+                        </label>
+                        @endforeach
+                        <button type="submit" class="btn btn-signin mb-4 float-sm-right mt-4">Check Hasil
+                            Diagnosa</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -74,44 +40,32 @@
                     <div class="widget-content">
                         <div class="card">
                             <div class="card-body">
-                                <h5>Riwayat Diagnosa</h5>
-                                <label>Anda telah mendiagnosa:</label>
-                                <div class="content mt-3">
-                                    <h6 class="judul-diagnosa">
-                                        Penyakit: Kutu air
-                                    </h6>
-                                    <small class="judul-diagnosa">
-                                        Pada tanggal: 23 Juli 2020
-                                    </small>
-                                    <hr>
-                                </div>
-                                <div class="content mt-3">
-                                    <h6 class="judul-diagnosa">
-                                        Penyakit: Kutu air
-                                    </h6>
-                                    <small class="judul-diagnosa">
-                                        Pada tanggal: 23 Juli 2020
-                                    </small>
-                                    <hr>
-                                </div>
-                                <div class="content mt-3">
-                                    <h6 class="judul-diagnosa">
-                                        Penyakit: Kutu air
-                                    </h6>
-                                    <small class="judul-diagnosa">
-                                        Pada tanggal: 23 Juli 2020
-                                    </small>
-                                    <hr>
-                                </div>
-                                <div class="content mt-3">
-                                    <h6 class="judul-diagnosa">
-                                        Penyakit: Kutu air
-                                    </h6>
-                                    <small class="judul-diagnosa">
-                                        Pada tanggal: 23 Juli 2020
-                                    </small>
-                                    <hr>
-                                </div>
+                                @php
+                                $riwayat = App\Diagnosa::where('user_id', auth()->user()->id)->get();
+                                @endphp
+                                @if ($riwayat->count() <= 0) 
+                                    <h5>Riwayat Diagnosa</h5>
+                                    <label>Anda belum pernah mendiagnosa</label>
+                                @else
+                                    <h5>Riwayat Diagnosa</h5>
+                                    <label>Anda telah mendiagnosa:</label>
+                                    @foreach ($riwayat as $item)
+                                    @php
+                                    $penyakit = App\Penyakit::find($item->penyakit_id);
+                                    @endphp
+                                    <a href="{{route('hasildiagnosa', $item->id)}}">
+                                        <div class="content mt-3">
+                                            <h6 class="judul-diagnosa">
+                                                Penyakit: {{$penyakit->nama}}
+                                            </h6>
+                                            <small class="judul-diagnosa">
+                                                Pada tanggal: {{ date('j M Y',strtotime($item->created_at))}}
+                                            </small>
+                                            <hr>
+                                        </div>
+                                    </a>
+                                    @endforeach
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -119,6 +73,5 @@
             </aside>
         </div>
     </div>
-
 </div>
 @endsection

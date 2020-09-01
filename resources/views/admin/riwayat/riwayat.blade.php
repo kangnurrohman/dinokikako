@@ -24,25 +24,34 @@
                                 <th>#</th>
                                 <th>Nama Pendiagnosa</th>
                                 <th>Penyakit Ikan</th>
-                                <th>Persentase</th>
                                 <th>Tgl Diagnosa</th>
                                 <th>Opsi</th>
                             </tr>
                         </thead>
                         <tbody>
+                            @php
+                            $riwayat = App\Diagnosa::all();
+                            @endphp
+                            @foreach ($riwayat as $no => $item)
+                            @php
+                            $penyakit = App\Penyakit::find($item->penyakit_id);
+                            $pembudidaya = App\User::find($item->user_id);
+                            @endphp
                             <tr>
-                                <td>1</td>
-                                <td>Ainur Rohman</td>
-                                <td>Kutu Ikan</td>
-                                <td>40%</td>
-                                <td>20 Juli 2020</td>
+                                <td>{{++$no}}</td>
+                                <td>{{$pembudidaya->nama}}</td>
+                                <td>{{$penyakit->nama}}</td>
+                                <td>{{ date('j M Y',strtotime($item->created_at))}}</td>
                                 <td>
-                                    <button type="submit" class="btn btn-danger btn-sm" data-toggle="modal"
-                                        data-target="#exampleModal">
-                                        <i class="fa fa-trash" aria-hidden="true"></i>
-                                    </button>
+                                        <a href="{{route('hasildiagnosa', $item->id)}}">
+                                            <button type="button" class="btn btn-signin btn-sm">
+                                                <i class="fa fa-eye" aria-hidden="true"></i>
+                                            </button>
+                                        </a>
+                                        <a href="#" class="btn btn-danger btn-sm delete" riwayatid="{{$item->penyakit_id}}"><i class="fa fa-trash"></i></a>
                                 </td>
                             </tr>
+                            @endforeach
                         </tbody>
 
                     </table>
@@ -53,4 +62,23 @@
     </div>
 
 </div>
+@endsection
+@section('buttonadd')
+    <script>
+        $('.delete').click(function(){
+            var riwayat_id = $(this).attr('riwayatid');
+            swal({
+                title: "Apakah anda yakin ?",
+                text: "Mau menghapus riwayat ini !!!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                    window.location = "/riwayat/"+riwayat_id+"/delete";
+                } 
+            });
+        }); 
+    </script>
 @endsection

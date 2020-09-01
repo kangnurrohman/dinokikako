@@ -63,7 +63,7 @@ class PenyakitController extends Controller
                     'bobot_id' => $bobot,
             ]);
         }
-        return back();
+        return back()->with('sukses','Data berhasil dimasukkan');
     }
 
     /**
@@ -122,7 +122,7 @@ class PenyakitController extends Controller
                     'bobot_id' => $bobot,
             ]);
         }
-        return back();
+        return back()->with('sukses','Data berhasil diedit');
     }
 
     /**
@@ -139,6 +139,6 @@ class PenyakitController extends Controller
             DB::table('aturan')->where('penyakit_id','=', $ids)->delete();
         }
         DB::table('penyakit')->where('id','=', $id)->delete();
-        return back();
+        return back()->with('sukses','Data berhasil dihapus');;
     }
 }

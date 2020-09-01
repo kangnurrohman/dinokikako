@@ -29,10 +29,15 @@ Route::get('pembudidayalogout', "PembudidayaController@logout")->name('pembudida
 Route::group(['middleware' => ['auth', 'checkRole:admin']], function(){
     Route::get("datapembudidaya", "DataPembudidayaController@index")->name('datapembudidaya');
     Route::get("riwayat", "RiwayatController@index")->name('riwayat');
-    Route::resource('gejala', "GejalaController");
+    Route::get("riwayat/{id}/delete", "RiwayatController@destroy");
+    Route::resource('gejala', "GejalaController")->except(['create','show','destroy']);
+    Route::get('gejala/{id}/delete', "GejalaController@destroy");
 });
 
 Route::group(['middleware' => ['auth', 'checkRole:admin,pembudidaya']], function(){
+    Route::get('hasildiagnosa/{id}', "DiagnosaController@hasilDiagnosa")->name('hasildiagnosa');
     Route::get('diagnosa', "DiagnosaController@index")->name('diagnosa');
-    Route::resource('penyakit', "PenyakitController");
+    Route::post('diagnosa', "DiagnosaController@diagnosa")->name('storeDiagnosa');
+    Route::resource('penyakit', "PenyakitController")->except(['create','destroy']);
+    Route::get('penyakit/{id}/delete', "PenyakitController@destroy");
 });
