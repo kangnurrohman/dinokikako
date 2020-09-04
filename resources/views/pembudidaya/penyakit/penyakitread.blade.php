@@ -9,7 +9,7 @@
         @if ($penyakit->definisi == null)
         Maaf, belum ada penjelasan lengkap mengenai apa sebenarnya penyakit {{$penyakit->nama}}.
         @endif
-        {{$penyakit->definisi}}
+        {!!$penyakit->definisi!!}
     </p>
 </div>
 <div class="modal-header title-penyakit">
@@ -20,6 +20,6 @@
         @if ($penyakit->definisi == null)
         Maaf, untuk pengobatan penyakit {{$penyakit->nama}} masih dalam tahap penelitian.
         @endif
-        {{$penyakit->pengobatan}}
+        {!!$penyakit->pengobatan!!}
     </p>
 </div>

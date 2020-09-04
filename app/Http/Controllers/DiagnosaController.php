@@ -105,7 +105,7 @@ class DiagnosaController extends Controller
             $diagnosaDetail->save();
         }
         $persentase = number_format($hasilDiagnosaEP*100,0);
-        return view('pembudidaya.diagnosa.hasildiagnosa', compact('diagnosa', 'hasilDiagnosaPenyakit', 'persentase'));
+        return view('pembudidaya.diagnosa.hasildiagnosa', compact('hasilDiagnosaEP','arrValueBobot','arrEP','arrPenyakit','arrBobotID','diagnosa', 'hasilDiagnosaPenyakit', 'persentase'));
     }
 
     public function hasilDiagnosa($id)
@@ -177,8 +177,9 @@ class DiagnosaController extends Controller
                 $hasilDiagnosaPenyakit = $value;
             }
         }
+        // dd($arrBobotID);
         $persentase = number_format($hasilDiagnosaEP*100,0);
         $diagnosa = Diagnosa::find($id);
-        return view('pembudidaya.diagnosa.hasildiagnosa', compact('diagnosa', 'hasilDiagnosaPenyakit', 'persentase'));
+        return view('pembudidaya.diagnosa.hasildiagnosa', compact('hasilDiagnosaEP','arrValueBobot','arrEP','arrPenyakit','arrBobotID','diagnosa', 'hasilDiagnosaPenyakit', 'persentase'));
     }
 }

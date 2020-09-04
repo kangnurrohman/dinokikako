@@ -43,10 +43,9 @@
                                 @php
                                 $riwayat = App\Diagnosa::where('user_id', auth()->user()->id)->get();
                                 @endphp
-                                @if ($riwayat->count() <= 0) 
-                                    <h5>Riwayat Diagnosa</h5>
+                                @if ($riwayat->count() <= 0) <h5>Riwayat Diagnosa</h5>
                                     <label>Anda belum pernah mendiagnosa</label>
-                                @else
+                                    @else
                                     <h5>Riwayat Diagnosa</h5>
                                     <label>Anda telah mendiagnosa:</label>
                                     @foreach ($riwayat as $item)
@@ -65,7 +64,7 @@
                                         </div>
                                     </a>
                                     @endforeach
-                                @endif
+                                    @endif
                             </div>
                         </div>
                     </div>
