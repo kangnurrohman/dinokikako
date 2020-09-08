@@ -41,7 +41,7 @@
                         <div class="card">
                             <div class="card-body">
                                 @php
-                                $riwayat = App\Diagnosa::where('user_id', auth()->user()->id)->get();
+                                $riwayat = App\Diagnosa::orderBy('created_at', 'desc')->where('user_id', auth()->user()->id)->paginate(8);
                                 @endphp
                                 @if ($riwayat->count() <= 0) <h5>Riwayat Diagnosa</h5>
                                     <label>Anda belum pernah mendiagnosa</label>
@@ -58,12 +58,13 @@
                                                 Penyakit: {{$penyakit->nama}}
                                             </h6>
                                             <small class="judul-diagnosa">
-                                                Pada tanggal: {{ date('j M Y',strtotime($item->created_at))}}
+                                                Pada tanggal: {{ date('j M Y h:i:s',strtotime($item->created_at))}}
                                             </small>
                                             <hr>
                                         </div>
                                     </a>
                                     @endforeach
+                                    {{$riwayat->links('pagination.bootstrap-4')}}
                                     @endif
                             </div>
                         </div>

@@ -30,7 +30,7 @@
                         </thead>
                         <tbody>
                             @php
-                            $riwayat = App\Diagnosa::all();
+                            $riwayat = App\Diagnosa::orderBy('created_at', 'desc')->get();
                             @endphp
                             @foreach ($riwayat as $no => $item)
                             @php
