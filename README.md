@@ -1,5 +1,5 @@
 # Dinokikako
-**DINOKIKAKO** ialah singkatan dari **DI**ag**NO**sa Penya**KI**t I**KA**n **KO**i merupakan sebuah aplikasi pendiagnosa penyakit ikan koi dengan sebuah pendekatan metode *Euclidean Probability*.
+**DINOKIKAKO** adalah singkatan dari **DI**ag**NO**sa Penya**KI**t I**KA**n **KO**i merupakan sebuah aplikasi pendiagnosa penyakit ikan koi dengan sebuah pendekatan metode *Euclidean Probability*.
 
 Aplikasi ini dibuat untuk memenuhi Skripsi pada tahun 2020 di:
 
